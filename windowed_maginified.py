@@ -9,19 +9,22 @@ import pygame
 import dxcam
 import win32gui
 import win32con
+import win32api
+import ctypes
+
+# 设置DPI感知（Windows API）
+try:
+    ctypes.windll.shcore.SetProcessDpiAwareness(2)  # 使用Per Monitor V2模式
+except Exception as e:
+    ctypes.windll.user32.SetProcessDPIAware()  # 兼容旧版系统
 
 # 获取屏幕信息
 screen = dxcam.create()
 screen_width = screen.width
-      
-    
-    
-      
-    
 screen_height = screen.height
 
 # 计算截图区域（屏幕中心300x300）
-capture_size = 600#窗口宽度
+capture_size = 800#窗口宽度
 magnify_times = 4 #放大倍率
 left = (screen_width - capture_size) // 2
 top = (screen_height - capture_size) // 2
